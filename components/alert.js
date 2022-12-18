@@ -55,7 +55,7 @@ const Alert = ({ code: code_, type: type_ }) => {
       >
         <div
           ref={alertRef}
-          className={`text-dwhite/90 rounded-full flex flex-row items-center gap-x-5 fixed bottom-7 mx-8 px-7 py-2 shadow-floating ${bg[type]}`}
+          className={`text-dwhite/90 rounded-[22px] flex flex-row items-center gap-x-5 fixed bottom-7 mx-8 px-7 py-2 shadow-floating ${bg[type]}`}
         >
           <div className="text-base">{status[type]}</div>
           <div className="text-lg max-w-sm">{types[type]}</div>
