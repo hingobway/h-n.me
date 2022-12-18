@@ -6,8 +6,7 @@
     "dev": "next dev",
     "build": "next build && next export",
     "start": "next start",
-    "lint": "next lint",
-    "deploy": "surge out www.h-n.me"
+    "lint": "next lint"
   },
   "dependencies": {
     "@next/font": "13.0.7",
