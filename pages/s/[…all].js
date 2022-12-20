@@ -1,10 +1,10 @@
-import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 
 const SDirect = () => {
-  const router = useRouter();
-  
-  router.push(`https://h-n.me/${router.pathname.slice(3)}`);
-  
+  useEffect(() => {
+    window.location = `https://h-n.me/` + window.location.pathname.slice(3);
+  }, []);
+
   return null;
 };
 
