@@ -28,6 +28,9 @@ const Alert = ({ code: code_, type: type_ }) => {
     CUSTOM_PATH_INVALID: `Custom paths must be at least 4 characters long and only contain letters, numbers, -, and _.`,
     PATH_TAKEN: `That custom path is already taken.`,
     SERVER_ERROR: `The server is having trouble right now.`,
+    EMAIL_ERROR: `Email failed to deliver. Make sure it's correct.`,
+    MISSING_PARAMS: `Please enter something.`,
+    CODE_INVALID: `That code isn't valid.`,
   };
   const types = [
     'Copied to your clipboard.', // 0

@@ -10,6 +10,7 @@ specifiers:
   eslint-config-next: 13.0.7
   next: 13.0.7
   postcss: ^8.4.20
+  qs: ^6.11.0
   react: 18.2.0
   react-dom: 18.2.0
   react-transition-group: ^4.4.5
@@ -23,6 +24,7 @@ dependencies:
   eslint: 8.30.0
   eslint-config-next: 13.0.7_lzzuuodtsqwxnvqeq4g4likcqa
   next: 13.0.7_biqbaboplfbrettd7655fr4n2y
+  qs: 6.11.0
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-transition-group: 4.4.5_biqbaboplfbrettd7655fr4n2y
@@ -1961,6 +1963,13 @@ packages:
   /punycode/2.1.1:
     resolution: {integrity: sha512-XRsRjdf+j5ml+y/6GKHPZbrF/8p2Yga0JPtdqTIY2Xe5ohJPD9saDJJLPvp9+NSBprVvevdXZybnj2cv8OEd0A==}
     engines: {node: '>=6'}
+    dev: false
+
+  /qs/6.11.0:
+    resolution: {integrity: sha512-MvjoMCJwEarSbUYk5O+nmoSzSutSsTwF85zcHPQ9OrlFoZOYIjaqBAJIqIXjptyD5vThxGq52Xu/MaJzRkIk4Q==}
+    engines: {node: '>=0.6'}
+    dependencies:
+      side-channel: 1.0.4
     dev: false
 
   /queue-microtask/1.2.3:

@@ -2,8 +2,10 @@ import { useState, useEffect, useRef } from 'react';
 
 import axios from 'axios';
 
-import Clear from '../components/clear';
 import Alert from '../components/alert';
+import Account from '../components/account';
+
+import ClearIcon from '../components/icon_clear';
 
 export default function Home() {
   const urlRef = useRef(null);
@@ -31,12 +33,15 @@ export default function Home() {
     };
   }, [alert]);
 
+  const [accountAuth, setAccountAuth] = useState('');
+
   const clearPath = () => {
     setPath('');
   };
   const handleChange = (e) => {
-    if (e.target.name == 'path') setPath(e.target.value);
-    if (e.target.name == 'url') setURL(e.target.value);
+    const value = (e.target.value.match(/\S/g) || ['']).join('');
+    if (e.target.name == 'path') setPath(value);
+    if (e.target.name == 'url') setURL(value);
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -45,10 +50,18 @@ export default function Home() {
     setURL(e.target.url.value);
 
     try {
-      const { data } = await axios.post('https://h-n.me/api/new', {
-        path,
-        url,
-      });
+      const { data } = await axios.post(
+        'https://h-n.me/api/new',
+        {
+          path,
+          url,
+        },
+        {
+          headers: {
+            authorization: `Bearer ${accountAuth.token}`,
+          },
+        }
+      );
 
       if (!(data && data.path && data.url)) return setAlert([1]);
 
@@ -78,6 +91,7 @@ export default function Home() {
 
   return (
     <>
+      <Account setAccountAuth={(a) => setAccountAuth(a)} setAlert={setAlert} />
       <div className="text-7xl flex flex-col items-stretch --max-w-screen-2xl md:scale-100 scale-75 md:mx-0 mx-[-40px]">
         <form onSubmit={handleSubmit}>
           <div className="flex-1 flex flex-row justify-stretch items-center mb-6">
@@ -96,7 +110,7 @@ export default function Home() {
               />
               <div className="invisible sm:visible absolute inset-y-0 right-0 pr-7 flex flex-row items-center bg-bmatch rounded-r-md">
                 <div className="bg-gradient-to-l from-bmatch to-transparent h-full w-7 ml-[-26px]"></div>
-                <Clear on={path.length > 0} onClick={clearPath} />
+                <ClearIcon on={path.length > 0} onClick={clearPath} />
               </div>
             </div>
           </div>

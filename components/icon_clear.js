@@ -1,4 +1,4 @@
-const clear = ({ on, onClick }) => {
+const icon_clear = ({ on, onClick }) => {
   return (
     <div
       className={
@@ -29,4 +29,4 @@ const clear = ({ on, onClick }) => {
   );
 };
 
-export default clear;
+export default icon_clear;
