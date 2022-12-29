@@ -58,7 +58,7 @@ export default function Home() {
         },
         {
           headers: {
-            authorization: `Bearer ${accountAuth.token}`,
+            authorization: `Bearer ${accountAuth ? accountAuth.token : ''}`,
           },
         }
       );
