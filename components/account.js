@@ -7,7 +7,8 @@ import qs from 'qs';
 import AccountIcon from './icon_account';
 import LogoutIcon from './icon_logout';
 
-const domain = 'https://h-n.me/';
+import { api } from '../utility/dev';
+
 const ACCOUNT_STORAGE = 'user';
 
 const Account = ({ setAlert, setAccountAuth }) => {
@@ -28,7 +29,7 @@ const Account = ({ setAlert, setAccountAuth }) => {
     e.preventDefault();
 
     try {
-      await axios.get(domain + 'api/auth/login', {
+      await axios.get(api + '/api/auth/login', {
         params: { email: e.target.email.value },
       });
 
@@ -54,7 +55,7 @@ const Account = ({ setAlert, setAccountAuth }) => {
     e.preventDefault();
 
     try {
-      const { data } = await axios.get(domain + 'api/auth/verify/code', {
+      const { data } = await axios.get(api + '/api/auth/verify/code', {
         params: { email, code: e.target.code.value },
       });
 
@@ -106,7 +107,7 @@ const Account = ({ setAlert, setAccountAuth }) => {
         if (!verify) return;
 
         try {
-          const { data } = await axios.get(domain + 'api/auth/verify/token', {
+          const { data } = await axios.get(api + '/api/auth/verify/token', {
             params: { token: verify },
           });
 
@@ -140,7 +141,7 @@ const Account = ({ setAlert, setAccountAuth }) => {
       }
       if (a && a.token) {
         try {
-          const { data } = await axios.get(domain + 'api/user', {
+          const { data } = await axios.get(api + '/api/user', {
             headers: { authorization: `Bearer ${a.token}` },
           });
           a.user = data.user;
@@ -161,6 +162,7 @@ const Account = ({ setAlert, setAccountAuth }) => {
       }
     })();
     return;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

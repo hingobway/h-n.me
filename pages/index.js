@@ -2,6 +2,8 @@ import { useState, useEffect, useRef } from 'react';
 
 import axios from 'axios';
 
+import { api } from '../utility/dev';
+
 import Alert from '../components/alert';
 import Account from '../components/account';
 
@@ -51,7 +53,7 @@ export default function Home() {
 
     try {
       const { data } = await axios.post(
-        'https://h-n.me/api/new',
+        api + '/api/new',
         {
           path,
           url,
