@@ -17,7 +17,7 @@ const Error404 = () => {
         window.location = newURL;
       } catch (e) {
         if (e.request.responseURL !== curURL) window.location = newURL;
-        setLoading(false);
+        else setLoading(false);
       }
     })();
   }, []);

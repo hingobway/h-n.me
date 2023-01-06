@@ -164,32 +164,42 @@ const Account = ({ setAlert, setAccountAuth }) => {
   }, []);
 
   return (
-    <div className="flex row items-center absolute top-4 left-5 ml-3 mr-20 py-1.5 gap-x-5 text-dwhite/90 text-lg">
-      <AccountIcon />
-      <div className={` ${account ? 'hidden' : ''}`}>
-        <form onSubmit={stages[stage].submit}>
-          <input
-            type={stages[stage].type}
-            name={stages[stage].name}
-            value={input}
-            size={input.length || 13}
-            onChange={inputChange}
-            placeholder={stages[stage].placeholder}
-            className="block w-full  bg-transparent outline-0 font-bold placeholder:opacity-40"
-          />
-        </form>
-      </div>
-      {!account ? null : (
-        <div className="flex row items-center p-[3px] pl-6 gap-5 rounded-full border border-dwhite/10 bg-bg-dwhite">
-          <div className="t">{account.user.email}</div>
-          <div
-            className="bg-dwhite/90 rounded-full p-1 cursor-pointer"
-            onClick={handleLogout}
-          >
-            <LogoutIcon />
-          </div>
+    <div
+      className={`absolute left-5 right-20 px-1 py-1.5 text-dwhite/90 text-lg ${
+        !account ? 'top-5' : 'top-3'
+      }`}
+    >
+      <div
+        className={`relative w-full flex flex-row items-center gap-x-5 ${
+          account ? 'pr-8' : ''
+        }`}
+      >
+        <AccountIcon />
+        <div className={` ${account ? 'hidden' : ''}`}>
+          <form onSubmit={stages[stage].submit}>
+            <input
+              type={stages[stage].type}
+              name={stages[stage].name}
+              value={input}
+              size={input.length || 13}
+              onChange={inputChange}
+              placeholder={stages[stage].placeholder}
+              className="block w-full bg-transparent outline-0 font-bold placeholder:opacity-40"
+            />
+          </form>
         </div>
-      )}
+        {!account ? null : (
+          <div className="flex flex-row relative items-center p-[3px] max-w-full pl-6 gap-5 rounded-full border border-dwhite/10 bg-bg-dwhite">
+            <div className="truncate">{account.user.email}</div>
+            <div
+              className="bg-dwhite/90 rounded-full p-1 cursor-pointer"
+              onClick={handleLogout}
+            >
+              <LogoutIcon />
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
