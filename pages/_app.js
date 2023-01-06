@@ -3,7 +3,7 @@ import Head from 'next/head';
 import '../styles/globals.css';
 
 import { Lato } from '@next/font/google';
-const lato = Lato({ subsets: ['latin'], weight: ['400', '700', '900'] });
+const lato = Lato({ subsets: ['latin'], weight: ['300', '400', '700', '900'] });
 
 import Layout from '../components/layout';
 
