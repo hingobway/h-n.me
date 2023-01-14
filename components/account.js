@@ -25,9 +25,12 @@ const Account = ({ setAlert, setAccountAuth }) => {
     setInput(stages[stage].validate(e.target.value));
   };
 
+  const [loading, setLoading] = useState(true);
+
   const handleLogin = async (e) => {
     e.preventDefault();
 
+    setLoading(true);
     try {
       await axios.get(api + '/api/auth/login', {
         params: { email: e.target.email.value },
@@ -49,11 +52,14 @@ const Account = ({ setAlert, setAccountAuth }) => {
         setAlert([1]);
         console.log(err);
       }
+    } finally {
+      setLoading(false);
     }
   };
   const handleVerify = async (e) => {
     e.preventDefault();
 
+    setLoading(true);
     try {
       const { data } = await axios.get(api + '/api/auth/verify/code', {
         params: { email, code: e.target.code.value },
@@ -73,6 +79,8 @@ const Account = ({ setAlert, setAccountAuth }) => {
         setAlert([1]);
         console.log(err);
       }
+    } finally {
+      setLoading(false);
     }
   };
   const handleLogout = async (e) => {
@@ -127,16 +135,17 @@ const Account = ({ setAlert, setAccountAuth }) => {
           }
         } finally {
           router.push('/');
+          setLoading(false);
+          return;
         }
       }
-    })();
 
-    // check for stored token
-    (async () => {
+      // check for stored token
       let a = localStorage.getItem(ACCOUNT_STORAGE);
       try {
         a = JSON.parse(a);
       } catch (e) {
+        setLoading(false);
         return;
       }
       if (a && a.token) {
@@ -158,8 +167,11 @@ const Account = ({ setAlert, setAccountAuth }) => {
           } else {
             console.log(err);
           }
+        } finally {
+          setLoading(false);
         }
       }
+      setLoading(false);
     })();
     return;
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -176,30 +188,44 @@ const Account = ({ setAlert, setAccountAuth }) => {
           account ? 'pr-8' : ''
         }`}
       >
-        <AccountIcon />
-        <div className={` ${account ? 'hidden' : ''}`}>
-          <form onSubmit={stages[stage].submit}>
-            <input
-              type={stages[stage].type}
-              name={stages[stage].name}
-              value={input}
-              size={input.length || 13}
-              onChange={inputChange}
-              placeholder={stages[stage].placeholder}
-              className="block w-full bg-transparent outline-0 font-bold placeholder:opacity-40"
-            />
-          </form>
-        </div>
-        {!account ? null : (
-          <div className="flex flex-row relative items-center p-[3px] max-w-full pl-6 gap-5 rounded-full border border-dwhite/10 bg-bg-dwhite">
-            <div className="truncate">{account.user.email}</div>
-            <div
-              className="bg-dwhite/90 rounded-full p-1 cursor-pointer"
-              onClick={handleLogout}
-            >
-              <LogoutIcon />
-            </div>
-          </div>
+        {loading ? (
+          <div className="aspect-square h-7 bg-dwhite/[.07] rounded-full animate-pulse"></div>
+        ) : (
+          <AccountIcon />
+        )}
+
+        {loading ? (
+          <div className="bg-dwhite/[.07] rounded-full animate-pulse h-6 max-w-full w-40"></div>
+        ) : (
+          <>
+            {!account ? (
+              // LOGIN FORM
+              <div className={``}>
+                <form onSubmit={stages[stage].submit}>
+                  <input
+                    type={stages[stage].type}
+                    name={stages[stage].name}
+                    value={input}
+                    size={input.length || 13}
+                    onChange={inputChange}
+                    placeholder={stages[stage].placeholder}
+                    className="block w-full bg-transparent outline-0 font-bold placeholder:opacity-40"
+                  />
+                </form>
+              </div>
+            ) : (
+              // ACCOUNT INFO
+              <div className="flex flex-row relative items-center p-[3px] max-w-full pl-6 gap-5 rounded-full border border-dwhite/10 bg-bg-dwhite">
+                <div className="truncate">{account.user.email}</div>
+                <div
+                  className="bg-dwhite/90 rounded-full p-1 cursor-pointer"
+                  onClick={handleLogout}
+                >
+                  <LogoutIcon />
+                </div>
+              </div>
+            )}
+          </>
         )}
       </div>
     </div>
