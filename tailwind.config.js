@@ -17,7 +17,7 @@ module.exports = {
         bmatch: '#2c2c2c',
       },
       fontFamily: {
-        sans: ['Lato', ...defaultTheme.fontFamily.sans],
+        sans: ['var(--font-lato)', ...defaultTheme.fontFamily.sans],
       },
       boxShadow: {
         tight: '0px 2px 2px rgba(0, 0, 0, 0.25)',
