@@ -107,7 +107,7 @@ export default function Home() {
                 onChange={handleChange}
                 value={path}
                 placeholder="?????"
-                className="w-full block bg-transparent outline-0 text-7xl border-0 placeholder:opacity-[.18] placeholder:text-dwhite/90 focus:ring-0"
+                className="w-full block bg-transparent outline-0 text-7xl border-0 placeholder:opacity-[.18] placeholder:text-dwhite/90 focus:ring-0 appearance-none"
                 width="50"
               />
               <div className="invisible sm:visible absolute inset-y-0 right-0 pr-7 flex flex-row items-center bg-bmatch rounded-r-md">
@@ -133,7 +133,7 @@ export default function Home() {
                 value={url}
                 ref={urlRef}
                 placeholder="https://"
-                className="w-full block outline-0 focus:ring-0 bg-transparent  placeholder:opacity-70 placeholder:text-dwhite/10"
+                className="w-full block outline-0 focus:ring-0 appearance-none bg-transparent  placeholder:opacity-70 placeholder:text-dwhite/10"
               />
               <input ref={submitRef} type="submit" className="hidden" />
             </div>
