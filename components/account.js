@@ -215,7 +215,7 @@ const Account = ({ setAlert, setAccountAuth }) => {
               </div>
             ) : (
               // ACCOUNT INFO
-              <div className="flex flex-row relative items-center p-[3px] max-w-full pl-6 gap-5 rounded-full border border-dwhite/10 bg-bg-dwhite">
+              <div className="flex flex-row relative items-center p-[3px] max-w-full font-bold pl-6 gap-5 rounded-full border border-dwhite/10 bg-bg-dwhite">
                 <div className="truncate">{account.user.email}</div>
                 <div
                   className="bg-dwhite/90 rounded-full p-1 cursor-pointer"
