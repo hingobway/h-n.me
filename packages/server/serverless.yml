@@ -1,0 +1,44 @@
+service: h-n
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  profile: hingobway-aws
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - dynamodb:Query
+            - dynamodb:Scan
+            - dynamodb:GetItem
+            - dynamodb:PutItem
+            - dynamodb:UpdateItem
+            - dynamodb:DeleteItem
+          Resource:
+            - '*'
+
+  environment:
+    # VARIABLE: ${ssm:/project--variable}
+    API_VERIFY_SECRET: ${ssm:/h-n--verify-secret}
+    API_AUTH_SECRET: ${ssm:/h-n--auth-secret}
+    SENDGRID_KEY: ${ssm:/h-n--sendgrid-key}
+    TABLE_SHORTENER: h-n--shortener
+    TABLE_USERS: h-n--users
+    AWSREGION: us-east-1
+
+functions:
+  api:
+    handler: handler.handler
+    events:
+      - httpApi: '*'
+
+custom:
+  esbuild:
+    # plugins: esPlugins.js
+
+plugins:
+  - serverless-esbuild
+  - serverless-offline
+  - serverless-ignore
