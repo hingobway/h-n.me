@@ -2,7 +2,7 @@ import Head from 'next/head';
 
 import '../styles/globals.css';
 
-import { Lato } from '@next/font/google';
+import { Lato } from 'next/font/google';
 const lato = Lato({
   subsets: ['latin'],
   weight: ['300', '400', '700', '900'],
@@ -10,7 +10,7 @@ const lato = Lato({
   variable: '--font-lato',
 });
 
-import Layout from '../components/layout';
+import Layout from '../components/Layout';
 
 export default function App({ Component, pageProps }) {
   return (
