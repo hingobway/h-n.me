@@ -1,10 +1,9 @@
-const icon_clear = ({ on, onClick }) => {
+export default function ClearButton({ disabled, onClick }) {
   return (
-    <div
-      className={
-        '-drop-shadow-big-center' +
-        (on ? ' stroke-dwhite cursor-pointer' : ' stroke-almost-gray/90')
-      }
+    <button
+      aria-label="clear"
+      className="stroke-dwhite disabled:stroke-almost-gray/90"
+      disabled={disabled || null}
       onClick={onClick}
     >
       <svg width="40" height="40" fill="none" viewBox="0 0 24 24">
@@ -25,8 +24,6 @@ const icon_clear = ({ on, onClick }) => {
           d="M6.75 6.75L17.25 17.25"
         ></path>
       </svg>
-    </div>
+    </button>
   );
-};
-
-export default icon_clear;
+}
