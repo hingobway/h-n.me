@@ -1,6 +1,6 @@
 {
-  "name": "h-n_www",
-  "version": "0.1.0",
+  "name": "h-n.me--server",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "set PORT=3001 && next dev",
