@@ -46,7 +46,7 @@ const Account = ({ setAlert, setAccountAuth }) => {
         console.log(
           err.response.status,
           err.response.statusText,
-          err.response.data
+          err.response.data,
         );
       } else {
         setAlert([1]);
@@ -73,7 +73,7 @@ const Account = ({ setAlert, setAccountAuth }) => {
         console.log(
           err.response.status,
           err.response.statusText,
-          err.response.data
+          err.response.data,
         );
       } else {
         setAlert([1]);
@@ -127,7 +127,7 @@ const Account = ({ setAlert, setAccountAuth }) => {
             console.log(
               err.response.status,
               err.response.statusText,
-              err.response.data
+              err.response.data,
             );
           } else {
             setAlert([1]);
@@ -162,7 +162,7 @@ const Account = ({ setAlert, setAccountAuth }) => {
             console.log(
               err.response.status,
               err.response.statusText,
-              err.response.data
+              err.response.data,
             );
           } else {
             console.log(err);
@@ -179,23 +179,23 @@ const Account = ({ setAlert, setAccountAuth }) => {
 
   return (
     <div
-      className={`absolute left-5 right-20 px-1 py-1.5 text-dwhite/90 text-lg ${
+      className={`absolute left-5 right-20 px-1 py-1.5 text-lg text-dwhite/90 ${
         !account ? 'top-5' : 'top-3'
       }`}
     >
       <div
-        className={`relative w-full flex flex-row items-center gap-x-5 ${
+        className={`relative flex w-full flex-row items-center gap-x-5 ${
           account ? 'pr-8' : ''
         }`}
       >
         {loading ? (
-          <div className="aspect-square h-7 bg-dwhite/[.07] rounded-full animate-pulse"></div>
+          <div className="aspect-square h-7 animate-pulse rounded-full bg-dwhite/[.07]"></div>
         ) : (
           <AccountIcon />
         )}
 
         {loading ? (
-          <div className="bg-dwhite/[.07] rounded-full animate-pulse h-6 max-w-full w-40"></div>
+          <div className="h-6 w-40 max-w-full animate-pulse rounded-full bg-dwhite/[.07]"></div>
         ) : (
           <>
             {!account ? (
@@ -209,20 +209,20 @@ const Account = ({ setAlert, setAccountAuth }) => {
                     size={input.length || 13}
                     onChange={inputChange}
                     placeholder={stages[stage].placeholder}
-                    className="block w-full bg-transparent outline-0 font-bold placeholder:opacity-40"
+                    className="block w-full bg-transparent font-bold outline-0 placeholder:opacity-40"
                   />
                 </form>
               </div>
             ) : (
               // ACCOUNT INFO
-              <div className="flex flex-row relative items-center p-[3px] max-w-full font-bold pl-6 gap-5 rounded-full border border-dwhite/10 bg-bg-dwhite">
+              <div className="relative flex max-w-full flex-row items-center gap-5 rounded-full border border-dwhite/10 bg-bg-dwhite p-[3px] pl-6 font-bold">
                 <div className="truncate">{account.user.email}</div>
-                <div
-                  className="bg-dwhite/90 rounded-full p-1 cursor-pointer"
+                <button
+                  className="cursor-pointer rounded-full bg-dwhite/90 p-1"
                   onClick={handleLogout}
                 >
                   <LogoutIcon />
-                </div>
+                </button>
               </div>
             )}
           </>

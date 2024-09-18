@@ -97,6 +97,7 @@ export default function Home() {
       <Account {...{ setAccountAuth, setAlert }} />
       <div className="--max-w-screen-2xl mx-[-40px] flex scale-75 flex-col items-stretch text-7xl md:mx-0 md:scale-100">
         <form onSubmit={handleSubmit}>
+          <input type="submit" value="submit" className="sr-only" />
           {/* top row */}
           <div className="mb-6 flex flex-1 flex-row items-center justify-stretch">
             <div
@@ -110,7 +111,7 @@ export default function Home() {
             <div
               className={clsx(
                 'relative flex-1 rounded-md',
-                /* focus */ 'ring-black/15 ring-offset-0 focus-within:ring-1',
+                /* focus */ 'focus-within:shadow-inner',
               )}
             >
               {/* path input */}
@@ -126,7 +127,7 @@ export default function Home() {
                   /* focus */ 'focus:outline-none',
                 )}
               />
-              <div className="invisible absolute inset-y-0 right-0 flex flex-row items-center rounded-r-md bg-bmatch pr-7 sm:visible">
+              <div className="invisible absolute inset-y-2 right-2 flex flex-row items-center rounded-r-md bg-bmatch pr-7 sm:visible">
                 <div className="ml-[-26px] h-full w-7 bg-gradient-to-l from-bmatch to-transparent"></div>
                 <ClearButton onClick={clearPath} disabled={!path.length} />
               </div>
