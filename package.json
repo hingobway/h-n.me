@@ -1,0 +1,12 @@
+{
+  "name": "h-n.me",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "turbo dev"
+  },
+  "devDependencies": {
+    "turbo": "^2.1.2"
+  },
+  "packageManager": "pnpm@9.0.0"
+}
