@@ -5,7 +5,7 @@ import axios from 'axios';
 import { api } from '../utility/dev';
 import { clmx, clsx } from '../utility/classConcat';
 
-import Alert from '../components/alert';
+import Alert from '../components/Alert';
 import Account from '../components/Account';
 
 import ClearButton from '../components/ClearButton';
