@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 import axios from 'axios';
 
-import { isDev, api } from '../utility/dev';
+import { api } from '../utility/dev';
 
 const Error404 = () => {
   const [loading, setLoading] = useState(true);
@@ -10,18 +10,15 @@ const Error404 = () => {
   useEffect(() => {
     setShow(true);
     (async () => {
-      const newURL = `${api}${window.location.pathname}${window.location.search}`;
-      const curURL = `${
-        !isDev
-          ? `${window.location.protocol}//${window.location.host}`
-          : `https://www.h-n.me`
-      }${window.location.pathname}`;
       try {
-        await axios.get(newURL);
-        window.location = newURL;
+        const resp = await axios.get(
+          api + '/api/link' + window.location.pathname,
+        );
+        const url = resp?.data?.link?.url;
+        if (!url) throw 0;
+        window.location = url;
       } catch (e) {
-        if (e.request.responseURL !== curURL) window.location = newURL;
-        else setLoading(false);
+        setLoading(false);
       }
     })();
   }, []);
@@ -29,8 +26,8 @@ const Error404 = () => {
   return loading ? (
     <>
       {!show ? null : (
-        <div className="h-full flex flex-col justify-center">
-          <div className="h-[24px] aspect-square border-[3px] rounded-full border-dwhite/20 border-t-dwhite animate-spin"></div>
+        <div className="flex h-full flex-col justify-center">
+          <div className="aspect-square h-[24px] animate-spin rounded-full border-[3px] border-dwhite/20 border-t-dwhite"></div>
         </div>
       )}
       <noscript>

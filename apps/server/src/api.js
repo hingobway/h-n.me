@@ -47,6 +47,17 @@ r.post('/new', login(true), async (req, res) => {
   res.json({ path, url: `${req.protocol}://${req.get('host')}/${path}` });
 });
 
+r.get('/link/:path', login(true), async (req, res) => {
+  if (!req?.params?.path?.length) return res.err(400, 'MISSING_PATH');
+
+  try {
+    const link = (await Links.get(req.params.path))?.data;
+    return res.json({ link: link ?? null });
+  } catch (error) {
+    return res.err(500, 'DB_ERROR', error);
+  }
+});
+
 r.get('/user', login(), (req, res) =>
   res.json({ user: (({ id, email }) => ({ id, email }))(req.user) })
 );

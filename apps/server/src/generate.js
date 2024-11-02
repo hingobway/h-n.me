@@ -8,7 +8,7 @@ module.exports.generateKey = async (len) =>
     .replace(/\+/g, '-')
     .replace(/\//g, '_');
 
-export const generateNumerical = async (length) =>
+module.exports.generateNumerical = async (length) =>
   (
     Array(length).fill(0).join('') +
     parseInt(
@@ -17,4 +17,4 @@ export const generateNumerical = async (length) =>
     )
   ).slice(0 - length);
 
-export const generate6Digit = () => generateNumerical(6);
+module.exports.generate6Digit = () => generateNumerical(6);
